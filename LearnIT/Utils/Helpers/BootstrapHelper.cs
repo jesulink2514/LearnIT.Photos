@@ -30,13 +30,8 @@ namespace LearnIT.Utils.Helpers
             btnTag.Attributes.Add("value",text);
 
             return MvcHtmlString.Create(btnTag.ToString(TagRenderMode.SelfClosing));
-            //<input ></input>
-            //<input />
-            //<input>
-            //</input>
         }
-        //<input type = "submit" value="Guardar" class="btn btn-primary"/>
-        
-        //new MvcHtmlString("<h1></h1>")
+
+
     }
 }

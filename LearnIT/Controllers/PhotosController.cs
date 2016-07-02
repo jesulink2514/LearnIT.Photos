@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearnIT.Models.Photos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,13 @@ namespace LearnIT.Controllers
             return View();
         }
 
-        //POST 
+        //POST
+        [HttpPost] 
+        public ActionResult Upload(
+            UploadViewModel model,
+            HttpPostedFileBase image)
+        {
+            return View();
+        }
     }
 }
