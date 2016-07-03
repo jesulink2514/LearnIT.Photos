@@ -14,6 +14,7 @@ namespace LearnIT.Domain
         }
         public long Id { get; set; }
         public string Name { get; set; }
+        public string FileName { get; set; }
         public string Description { get; set; }
         public DateTime Creation { get; set; }
         public string Tags { get; set; }

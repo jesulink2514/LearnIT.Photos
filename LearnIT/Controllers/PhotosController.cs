@@ -38,23 +38,46 @@ namespace LearnIT.Controllers
 
             if (ModelState.IsValid)
             {
+                var generated = GenerateFileName(image.FileName);
+                var foto = GetFileName(generated,
+                    User.Identity.GetUserId());
+
+                image.SaveAs(foto);
+
                 var photo = new Photo()
                 {
                     Description = model.Description,
                     Tags = model.Tags,
                     UserId = User.Identity.GetUserId(),
                     Name = image.FileName,
+                    FileName = generated,
                     MimeType = image.ContentType
                 };
                 _context.Photos.Add(photo);
                 _context.SaveChanges();
-                image.SaveAs(
-                    GetFileName(image.FileName,
-                    User.Identity.GetUserId()));
 
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        public ActionResult Index()
+        {
+            var id = User.Identity.GetUserId();
+            var fotos = _context.Photos.Where(x => x.UserId == id).ToList();
+            return View(fotos);
+        }
+
+        public ActionResult Download(long id)
+        {
+            var userId = User.Identity.GetUserId();
+            var foto = _context.Photos
+                .FirstOrDefault(x => x.Id == id && x.UserId == userId);
+            if (foto == null) return HttpNotFound();
+
+            var physic = GetFileName(foto.FileName, userId);
+
+            return File(physic, foto.MimeType, foto.Name);
         }
 
         private string GetFileName(string name,string userId)
@@ -67,6 +90,13 @@ namespace LearnIT.Controllers
                 Directory.CreateDirectory(folder);
 
             return Path.Combine(folder, name);
+        }
+
+        private string GenerateFileName(string name)
+        {
+            var filename = Guid.NewGuid().ToString();
+            var ext = Path.GetExtension(name);
+            return filename + ext;
         }
     }
 }

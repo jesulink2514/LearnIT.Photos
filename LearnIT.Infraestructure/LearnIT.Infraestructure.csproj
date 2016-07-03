@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201607022253239_MimeTypeAdded.Designer.cs">
       <DependentUpon>201607022253239_MimeTypeAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607022352171_FileNameAdded2Photo.cs" />
+    <Compile Include="Migrations\201607022352171_FileNameAdded2Photo.Designer.cs">
+      <DependentUpon>201607022352171_FileNameAdded2Photo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607022253239_MimeTypeAdded.resx">
       <DependentUpon>201607022253239_MimeTypeAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607022352171_FileNameAdded2Photo.resx">
+      <DependentUpon>201607022352171_FileNameAdded2Photo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+@model List<LearnIT.Domain.Photo>
+@{
+    ViewBag.Title = "Mis Fotos";
+    var basePath = "/images/" + User.Identity.GetUserId()+"/";
+}
+<h2>Mis Fotos</h2>
+<div class="container">
+@foreach (var foto in Model)
+{
+    <div class="well well-sm col-lg-3">
+        <img class="img-responsive" src="@(basePath + foto.FileName)"/>
+        <p>
+            <i class="fa fa-archive"></i>
+            @foto.Name
+        </p>
+        <p><i class="fa fa-th-list"></i>
+        @foto.Description</p>
+        <p>
+            <i class="fa fa-calendar"></i>
+            @foto.Creation.ToShortDateString()</p>
+        <p>
+            <i class="fa fa-tags"></i>
+            @foto.Tags
+        </p>
+        <p>
+           <a class="btn btn-primary" href="@Url.Action("Download",new {id=foto.Id})">
+            <i class="fa fa-download"></i> Descargar
+           </a>
+        </p>
+    </div>
+}
+</div>
