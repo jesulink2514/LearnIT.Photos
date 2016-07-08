@@ -11,14 +11,17 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Description)
         @Html.BootstrapTextBoxFor(m => m.Description,"Ingrese una descripcion")    
+        @Html.ValidationMessageFor(m=>m.Description)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Tags)
         @Html.BootstrapTextBoxFor(m => m.Tags)
+        @Html.ValidationMessageFor(m => m.Tags)
     </div>
     <div class="form-group">
         @Html.LabelFor(m=>m.Image)
         <input type="file" name="image" accept="image/*"/>
+        @Html.ValidationMessageFor(m => m.Image)
     </div>
     @Html.BootstrapSubmit("Guardar")
 }
